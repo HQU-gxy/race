@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weihua.race.mapper.TrainRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.weihua.race.domain.vo.TrainRecordVO">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="trainId" column="train_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="gender" column="gender" jdbcType="VARCHAR"/>
+        <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="height" column="height" jdbcType="NUMERIC"/>
+        <result property="weight" column="weight" jdbcType="NUMERIC"/>
+        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+        <result property="vo2max" column="vo2max" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, train_id, name, gender, age, height, weight, time, vo2max
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM train_record
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="trainId != null and trainId != ''">
+                AND train_id = #{trainId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="gender != null and gender != ''">
+                AND gender = #{gender,jdbcType=VARCHAR}
+            </if>
+            <if test="age != null and age != ''">
+                AND age = #{age,jdbcType=INTEGER}
+            </if>
+            <if test="height != null and height != ''">
+                AND height = #{height,jdbcType=NUMERIC}
+            </if>
+            <if test="weight != null and weight != ''">
+                AND weight = #{weight,jdbcType=NUMERIC}
+            </if>
+            <if test="time != null and time != ''">
+                AND time = #{time,jdbcType=TIMESTAMP}
+            </if>
+            <if test="vo2max != null and vo2max != ''">
+                AND vo2max = #{vo2max,jdbcType=NUMERIC}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO train_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="trainId != null">train_id,</if>
+            <if test="name != null">name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="age != null">age,</if>
+            <if test="height != null">height,</if>
+            <if test="weight != null">weight,</if>
+            <if test="time != null">time,</if>
+            <if test="vo2max != null">vo2max,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+           <if test="id != null">
+               #{id,jdbcType=INTEGER},
+           </if>
+           <if test="trainId != null">
+               #{trainId,jdbcType=VARCHAR},
+           </if>
+           <if test="name != null">
+               #{name,jdbcType=VARCHAR},
+           </if>
+           <if test="gender != null">
+               #{gender,jdbcType=VARCHAR},
+           </if>
+           <if test="age != null">
+               #{age,jdbcType=INTEGER},
+           </if>
+           <if test="height != null">
+               #{height,jdbcType=NUMERIC},
+           </if>
+           <if test="weight != null">
+               #{weight,jdbcType=NUMERIC},
+           </if>
+           <if test="time != null">
+               #{time,jdbcType=TIMESTAMP},
+           </if>
+           <if test="vo2max != null">
+               #{vo2max,jdbcType=NUMERIC},
+           </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        UPDATE train_record
+        <set>
+            <if test="trainId != null and trainId != ''">
+                train_id = #{trainId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null and gender != ''">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="height != null">
+                height = #{height,jdbcType=NUMERIC},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=NUMERIC},
+            </if>
+            <if test="time != null">
+                time = #{time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="vo2max != null">
+                vo2max = #{vo2max,jdbcType=NUMERIC},
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM train_record
+        WHERE train_record_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>
+
