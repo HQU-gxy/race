@@ -12,10 +12,11 @@
         <result property="weight" column="weight" jdbcType="NUMERIC"/>
         <result property="time" column="time" jdbcType="TIMESTAMP"/>
         <result property="vo2max" column="vo2max" jdbcType="NUMERIC"/>
+        <result property="trainerId" column="trainer_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, train_id, name, gender, age, height, weight, time, vo2max
+        id, train_id, name, gender, age, height, weight, time, vo2max, trainer_id
     </sql>
 
     <select id="list" resultMap="BaseResultMap">
@@ -50,6 +51,9 @@
             <if test="vo2max != null and vo2max != ''">
                 AND vo2max = #{vo2max,jdbcType=NUMERIC}
             </if>
+            <if test="trainerId != null and trainerId != ''">
+                AND trainer_id = #{trainerId,jdbcType=VARCHAR}
+            </if>
         </where>
     </select>
 
@@ -65,6 +69,7 @@
             <if test="weight != null">weight,</if>
             <if test="time != null">time,</if>
             <if test="vo2max != null">vo2max,</if>
+            <if test="trainerId != null">trainer_id,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -95,6 +100,9 @@
            <if test="vo2max != null">
                #{vo2max,jdbcType=NUMERIC},
            </if>
+           <if test="trainerId != null">
+               #{trainerId,jdbcType=VARCHAR},
+           </if>
         </trim>
     </insert>
 
@@ -124,6 +132,9 @@
             </if>
             <if test="vo2max != null">
                 vo2max = #{vo2max,jdbcType=NUMERIC},
+            </if>
+            <if test="trainerId != null and trainerId != ''">
+                trainer_id = #{trainerId,jdbcType=VARCHAR},
             </if>
         </set>
         WHERE id = #{id,jdbcType=INTEGER}

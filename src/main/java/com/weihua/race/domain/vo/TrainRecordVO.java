@@ -10,14 +10,13 @@ import java.util.Date;
 /**
  * [TrainRecord]VO
  *
- * @author hqully
- * @date 2023-12-12 15:20:52
+ * @date 2023-12-21 10:53:03
  */
 @ApiModel(description = "训练记录表")
 @Data
 public class TrainRecordVO implements Serializable {
 
-    private static final long serialVersionUID = 942054333152826817L;
+    private static final long serialVersionUID = -32676988235671117L;
 
     /**
      * 自增主键
@@ -72,6 +71,12 @@ public class TrainRecordVO implements Serializable {
      */
     @ApiModelProperty("预测最大摄氧量")
     private Double vo2max;
+
+    /**
+     * 训练者id
+     */
+    @ApiModelProperty("训练者id")
+    private String trainerId;
 
 
 }

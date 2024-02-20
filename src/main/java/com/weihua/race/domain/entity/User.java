@@ -10,7 +10,6 @@ import java.io.Serializable;
 /**
  * [User]实体类
  *
- * @author hqully
  * @date 2023-12-12 15:27:27
  */
 @ApiModel(description = "用户表")

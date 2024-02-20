@@ -26,9 +26,9 @@ import java.util.List;
  * 针对数据库表[trainRecord]的操作Service
  * </p>
  *
- * @version 1.0
  * @entity {@link TrainRecord}
- * @date 2023-12-12 15:20:52 <br>
+ * @date 2023-12-21 10:53:03 <br>
+ * @version 1.0
  */
 @Slf4j
 @Service
@@ -53,7 +53,7 @@ public class TrainRecordServiceImpl implements TrainRecordService {
     public List<TrainRecordVO> list(TrainRecordDTO trainRecordDTO) {
         try {
             return trainRecordMapper.list(trainRecordDTO);
-        } catch (Exception e) {
+       } catch (Exception e) {
             log.error("LIST [trainRecord] FAIL\nINPUT OBJECT: {}\nREASON: {}", trainRecordDTO, e.toString());
             throw new ResultException(ResultEnum.ERROR, "查询训练记录列表失败");
         }
@@ -88,10 +88,11 @@ public class TrainRecordServiceImpl implements TrainRecordService {
             if (status == MapperConst.OBJECT_NULL) {
                 throw new DAOException("this [trainRecord] record not exist");
             }
-        } catch (DAOException e) {
+        }catch (DAOException e){
             log.warn("UPDATE [trainRecord] FAIL\nINPUT OBJECT: {}\nREASON: {}", trainRecordDTO, e.toString());
             throw new ResultException(ResultEnum.RESULT_NULL, "更新训练记录失败\n原因: 训练记录不存在");
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             log.error("UPDATE [trainRecord] FAIL\nINPUT OBJECT: {}\nREASON: {}", trainRecordDTO, e.toString());
             throw new ResultException(ResultEnum.ERROR, "更新训练记录失败");
         }
