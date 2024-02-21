@@ -37,6 +37,16 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
+
+    @Override
+    public User getUserByUsername(String username) {
+        try {
+            return userMapper.getByUsername(username);
+        } catch (Exception e) {
+            log.error("QUERY [user] FAIL\nINPUT OBJECT: {}\nREASON: {}", username, e.toString());
+            throw new ResultException(ResultEnum.ERROR, "查询用户失败");
+        }
+    }
     @Override
     public PageInfo<UserVO> page(PageDTO page, UserDTO userDTO) {
         try {

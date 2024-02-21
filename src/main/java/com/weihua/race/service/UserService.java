@@ -20,6 +20,8 @@ import java.util.List;
 
 public interface UserService {
 
+     User getUserByUsername(String username);
+
      /**
       * <p>
       *     根据[userDTO]的参数分页条件查询用户列表

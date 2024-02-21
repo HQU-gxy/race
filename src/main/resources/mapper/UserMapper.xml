@@ -19,9 +19,29 @@
         <result property="athlete" column="is_athlete" jdbcType="BOOLEAN"/>
     </resultMap>
 
+    <resultMap id="ResultMap" type="com.weihua.race.domain.entity.User">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+        <result property="gender" column="gender" jdbcType="INTEGER"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="INTEGER"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, user_id, role_id, username, password, salt, phone, name, nickname, age, gender, weight, height, is_athlete
     </sql>
+
+    <select id="getByUsername" resultMap="ResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user AS u
+        WHERE
+        username = #{username,jdbcType=VARCHAR}
+    </select>
 
     <select id="list" resultMap="BaseResultMap">
         SELECT

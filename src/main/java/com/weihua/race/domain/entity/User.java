@@ -1,28 +1,35 @@
 package com.weihua.race.domain.entity;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
+
+import lombok.Data;
 
 /**
  * [User]实体类
  *
- * @date 2023-12-12 15:27:27
+ * @date 2024-02-21 15:32:38
  */
 @ApiModel(description = "用户表")
 @Data
 public class User implements Serializable {
 
-    private static final long serialVersionUID = -74668906051434920L;
+    private static final long serialVersionUID = 969086415614352809L;
 
     /**
      * 自增主键
      */
     @ApiModelProperty("自增主键")
-    private Integer id;
+    @NotNull(message = "自增主键不能为空")
+    private Long id;
 
     /**
      * 用户id
@@ -37,15 +44,23 @@ public class User implements Serializable {
     private String roleId;
 
     /**
+     * 所属单位id
+     */
+    @ApiModelProperty("所属单位id")
+    private String unitId;
+
+    /**
      * 用户名
      */
     @ApiModelProperty("用户名")
+    @NotNull(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码
      */
     @ApiModelProperty("密码")
+    @NotNull(message = "密码不能为空")
     private String password;
 
     /**
@@ -101,6 +116,12 @@ public class User implements Serializable {
      */
     @ApiModelProperty("是否是运动员")
     private Boolean athlete;
+
+    /**
+     * 用户状态
+     */
+    @ApiModelProperty("用户状态")
+    private Integer state;
 
 
 }

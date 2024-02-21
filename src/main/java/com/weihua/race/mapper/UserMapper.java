@@ -21,6 +21,8 @@ import com.weihua.race.domain.vo.UserVO;
 @Mapper
 public interface UserMapper {
 
+    User getByUsername(@Param("username") String username);
+
     /**
      * <p>
      * 根据[userDTO]的参数条件查询用户列表
