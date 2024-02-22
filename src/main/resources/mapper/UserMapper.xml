@@ -7,16 +7,16 @@
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="roleId" column="role_id" jdbcType="VARCHAR"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
-        <result property="password" column="password" jdbcType="VARCHAR"/>
-        <result property="salt" column="salt" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
         <result property="gender" column="gender" jdbcType="VARCHAR"/>
         <result property="weight" column="weight" jdbcType="NUMERIC"/>
         <result property="height" column="height" jdbcType="NUMERIC"/>
         <result property="athlete" column="is_athlete" jdbcType="BOOLEAN"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
+        <result property="state" column="state" jdbcType="NUMERIC"/>
     </resultMap>
 
     <resultMap id="ResultMap" type="com.weihua.race.domain.entity.User">
@@ -32,7 +32,12 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, user_id, role_id, username, password, salt, phone, name, nickname, age, gender, weight, height, is_athlete
+        u.id, u.user_id, u.role_id, u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
+    </sql>
+
+    <sql id="view_List">
+        u.id, u.user_id, u.role_id, u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
+        ,r.name as role_name, un.name as unit_name
     </sql>
 
     <select id="getByUsername" resultMap="ResultMap">
@@ -45,8 +50,10 @@
 
     <select id="list" resultMap="BaseResultMap">
         SELECT
-        <include refid="Base_Column_List"/>
-        FROM user
+        <include refid="view_List"/>
+        FROM user as u
+        join role as r on u.role_id = r.role_id
+        join unit as un on u.unit_id = un.unit_id
         <where>
             <if test="id != null and id != ''">
                 AND id = #{id,jdbcType=INTEGER}
@@ -84,8 +91,7 @@
             <if test="weight != null and weight != ''">
                 AND weight = #{weight,jdbcType=NUMERIC}
             </if>
-            <if test="height != null and height != ''">
-                AND height = #{height,jdbcType=NUMERIC}
+<if test="height != null and height != ''">                AND height = #{height,jdbcType=NUMERIC}
             </if>
             <if test="athlete != null and athlete != ''">
                 AND is_athlete = #{athlete,jdbcType=BOOLEAN}

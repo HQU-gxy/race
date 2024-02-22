@@ -1,29 +1,34 @@
 package com.weihua.race.domain.dto;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
+
+import lombok.Data;
 
 /**
  * [User]DTO
  *
- * @author hqully
- * @date 2023-12-12 15:27:28
+ * @date 2024-02-22 14:43:38
  */
 @ApiModel(description = "用户表")
 @Data
 public class UserDTO implements Serializable {
 
-    private static final long serialVersionUID = 904251357734477553L;
+    private static final long serialVersionUID = -31913675495141019L;
 
     /**
      * 自增主键
      */
     @ApiModelProperty("自增主键")
-    private Integer id;
+    private Long id;
 
     /**
      * 用户id
@@ -36,6 +41,12 @@ public class UserDTO implements Serializable {
      */
     @ApiModelProperty("角色id")
     private String roleId;
+
+    /**
+     * 所属单位id
+     */
+    @ApiModelProperty("所属单位id")
+    private String unitId;
 
     /**
      * 用户名
@@ -102,6 +113,12 @@ public class UserDTO implements Serializable {
      */
     @ApiModelProperty("是否是运动员")
     private Boolean athlete;
+
+    /**
+     * 用户状态
+     */
+    @ApiModelProperty("用户状态")
+    private Integer state;
 
 
 }

@@ -1,29 +1,34 @@
 package com.weihua.race.domain.vo;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
+
+import lombok.Data;
 
 /**
  * [User]VO
  *
- * @author hqully
- * @date 2023-12-12 15:27:28
+ * @date 2024-02-22 14:43:40
  */
 @ApiModel(description = "用户表")
 @Data
 public class UserVO implements Serializable {
 
-    private static final long serialVersionUID = -69568839407288839L;
+    private static final long serialVersionUID = 353563087627725597L;
 
     /**
      * 自增主键
      */
     @ApiModelProperty("自增主键")
-    private Integer id;
+    private Long id;
 
     /**
      * 用户id
@@ -38,15 +43,23 @@ public class UserVO implements Serializable {
     private String roleId;
 
     /**
+     * 所属单位id
+     */
+    @ApiModelProperty("所属单位id")
+    private String unitId;
+
+    /**
      * 用户名
      */
     @ApiModelProperty("用户名")
+    @NotNull(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码
      */
     @ApiModelProperty("密码")
+    @NotNull(message = "密码不能为空")
     private String password;
 
     /**
@@ -103,6 +116,25 @@ public class UserVO implements Serializable {
     @ApiModelProperty("是否是运动员")
     private Boolean athlete;
 
+    /**
+     * 用户状态
+     */
+    @ApiModelProperty("用户状态")
+    private Integer state;
+
+
+    /**
+     * 单位名称
+     */
+    @ApiModelProperty("单位名称")
+    private String unitName;
+
+
+    /**
+     * 角色名称
+     */
+    @ApiModelProperty("角色名称")
+    private String roleName;
 
 }
 

@@ -35,7 +35,7 @@ import java.util.*;
  * @date 2022-05-06 21:10
  * @Version 1.0
  */
-@Configuration
+// @Configuration
 public class ShiroConfig {
 
     @Bean
