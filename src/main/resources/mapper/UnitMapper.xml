@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weihua.race.mapper.UnitMapper">
+
+    <resultMap id="BaseResultMap" type="com.weihua.race.domain.vo.UnitVO">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unitId" column="unit_id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+id, unit_id, name
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM unit
+        <where>
+            <if test="id != null and id != ''">
+                AND id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="unitId != null and unitId != ''">
+                AND unit_id = #{unitId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                AND name = #{name,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO unit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="unitId != null">unit_id,</if>
+            <if test="name != null">name,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+           <if test="id != null">
+               #{id,jdbcType=INTEGER},
+           </if>
+           <if test="unitId != null">
+               #{unitId,jdbcType=VARCHAR},
+           </if>
+           <if test="name != null">
+               #{name,jdbcType=VARCHAR},
+           </if>
+        </trim>
+    </insert>
+
+    <update id="update">
+        UPDATE unit
+        <set>
+            <if test="unitId != null and unitId != ''">
+                unit_id = #{unitId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM unit
+        WHERE unit_id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>
+
