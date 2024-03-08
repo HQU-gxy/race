@@ -14,6 +14,7 @@
         <result property="weight" column="weight" jdbcType="NUMERIC"/>
         <result property="height" column="height" jdbcType="NUMERIC"/>
         <result property="athlete" column="is_athlete" jdbcType="BOOLEAN"/>
+        <result property="unitId" column="unit_id" jdbcType="VARCHAR"/>
         <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
         <result property="unitName" column="unit_name" jdbcType="VARCHAR"/>
         <result property="state" column="state" jdbcType="NUMERIC"/>
@@ -36,11 +37,11 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        u.id, u.user_id, u.role_id, u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
+        u.id, u.user_id, u.role_id,u.unit_id, u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
     </sql>
 
     <sql id="view_List">
-        u.id, u.user_id, u.role_id, u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
+        u.id, u.user_id, u.role_id, u.unit_id,u.username, u.password, u.salt, u.phone, u.name, u.nickname, u.age, u.gender, u.weight, u.height, u.is_athlete
         ,r.name as role_name, un.name as unit_name
     </sql>
 
