@@ -28,7 +28,6 @@ public class User implements Serializable {
      * 自增主键
      */
     @ApiModelProperty("自增主键")
-    @NotNull(message = "自增主键不能为空")
     private Long id;
 
     /**

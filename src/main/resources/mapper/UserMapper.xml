@@ -69,6 +69,9 @@
             <if test="roleId != null and roleId != ''">
                 AND u.role_id = #{roleId,jdbcType=VARCHAR}
             </if>
+            <if test="unitId != null and unitId != ''">
+                AND u.unit_id = #{unitId,jdbcType=VARCHAR}
+            </if>
             <if test="username != null and username != ''">
                 AND u.username = #{username,jdbcType=VARCHAR}
             </if>

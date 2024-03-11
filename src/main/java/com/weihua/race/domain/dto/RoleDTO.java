@@ -27,7 +27,6 @@ public class RoleDTO implements Serializable {
      * 物理id
      */
     @ApiModelProperty("物理id")
-    @NotNull(message = "物理id不能为空")
     private Long id;
 
     /**
